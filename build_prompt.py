@@ -14,7 +14,6 @@ CORS(app)
 
 # Config vars from env
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-AIRTABLE_API_KEY = os.environ.get("AIRTABLE_API_KEY")
 AIRTABLE_BASE_ID = os.environ.get("AIRTABLE_BASE_ID")
 AIRTABLE_TABLE_NAME = os.environ.get("AIRTABLE_USER_TABLE", "reconnekt_users")
 JWT_SECRET = os.environ.get("JWT_SECRET")
@@ -53,7 +52,7 @@ Respond with only the {output_type.lower()}."""
 
 def get_airtable_record_by_email(email):
     url = f"https://api.airtable.com/v0/{AIRTABLE_BASE_ID}/{AIRTABLE_TABLE_NAME}"
-    headers = {"Authorization": f"Bearer {AIRTABLE_API_KEY}"}
+    headers = {"Authorization": f"Bearer {AIRTABLE_PAT}"}
     params = {"filterByFormula": f"{{Username}}='{email}'"}
     response = requests.get(url, headers=headers, params=params)
     records = response.json().get("records", [])
@@ -93,7 +92,7 @@ def process_text():
 
     # Get user record and check tokens
     url = f"https://api.airtable.com/v0/{AIRTABLE_BASE_ID}/{AIRTABLE_TABLE_NAME}/{user_id}"
-    headers = {"Authorization": f"Bearer {AIRTABLE_API_KEY}", "Content-Type": "application/json"}
+    headers = {"Authorization": f"Bearer {AIRTABLE_PAT}", "Content-Type": "application/json"}
     record = requests.get(url, headers=headers).json()
     tokens = record.get("fields", {}).get("Tokens", 0)
 
