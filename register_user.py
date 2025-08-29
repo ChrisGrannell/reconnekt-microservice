@@ -9,12 +9,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 AIRTABLE_API_KEY = os.environ.get("AIRTABLE_API_KEY")
+AIRTABLE_PAT = os.environ.get("AIRTABLE_PAT")
 AIRTABLE_BASE_ID = os.environ.get("AIRTABLE_BASE_ID")
 AIRTABLE_TABLE_NAME = os.environ.get("AIRTABLE_USER_TABLE", "reconnekt_users")
 
 AIRTABLE_URL = f"https://api.airtable.com/v0/{AIRTABLE_BASE_ID}/{AIRTABLE_TABLE_NAME}"
 HEADERS = {
-    "Authorization": f"Bearer {AIRTABLE_API_KEY}",
+    "Authorization": f"Bearer {AIRTABLE_PAT}",
     "Content-Type": "application/json"
 }
 
