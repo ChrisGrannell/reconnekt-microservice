@@ -122,3 +122,18 @@ def health():
 if __name__ == "__main__":
     app.run(debug=True)
 
+if _name_ == "_main_":
+    sample_data = {
+        "name": "Jane Doe",
+        "company": "Acme Corp",
+        "linkedin": "linkedin.com/in/janedoe",
+        "met_via": "Conference",
+        "notes_for_next_time": "Discuss partnership.",
+        "output_type": "Email",
+        "historical_notes": [
+            {"date": "2025-08-01", "note": "Met at booth."},
+            {"date": "2025-08-15", "note": "Followed up via email."}
+        ]
+    }
+    prompt = build_prompt(sample_data)
+    print(prompt)
