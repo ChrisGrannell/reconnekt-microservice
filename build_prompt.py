@@ -1,4 +1,4 @@
- # reconnekt_microservice.py
+# reconnekt_microservice.py
 # Flask app to verify JWTs, check token balance from Airtable, and proxy OpenAI requests
 
 from flask import Flask, request, jsonify
@@ -7,13 +7,17 @@ import jwt
 import bcrypt
 import openai
 import os
+from dotenv import load_dotenv
 import requests
+
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
 # Config vars from env
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+AIRTABLE_PAT = os.environ.get("AIRTABLE_PAT")
 AIRTABLE_BASE_ID = os.environ.get("AIRTABLE_BASE_ID")
 AIRTABLE_TABLE_NAME = os.environ.get("AIRTABLE_USER_TABLE", "reconnekt_users")
 JWT_SECRET = os.environ.get("JWT_SECRET")
