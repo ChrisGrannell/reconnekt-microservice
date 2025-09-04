@@ -28,9 +28,9 @@ def create_user(email, plain_password, initial_tokens):
 
     data = {
         "fields": {
-            "Username": email,
-            "Password": hashed_password,
-            "Tokens": initial_tokens
+            "username": email,
+            "password": hashed_password,
+            "tokens": initial_tokens
         }
     }
 
